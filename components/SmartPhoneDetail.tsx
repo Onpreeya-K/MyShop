@@ -1,4 +1,4 @@
-import { useAlertSuccess } from '@/contexts/AlertSuccessContext';
+import { useAlert } from '@/contexts/AlertContext';
 import { useProductContext } from '@/contexts/ProductContext';
 import { Product } from '@/types/ProductType';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -18,14 +18,16 @@ export default function SmartPhoneDetail() {
     const product = route.params?.product;
     if (!product) return null;
 
-    const { showAddToCartSuccess } = useAlertSuccess();
+    const { showAddToCartSuccess, showAddFavorite, showDeleteFavorite } = useAlert();
     const { state, dispatch } = useProductContext();
     const isFavorite = state.favoriteProduct.some((item) => item.id === product.id);
     const handleAddToFavorite = () => {
         if (isFavorite) {
             dispatch({ type: 'REMOVE_FROM_FAVORITE', payload: product.id });
+            showDeleteFavorite();
         } else {
             dispatch({ type: 'ADD_TO_FAVORITE', payload: product });
+            showAddFavorite();
         }
     };
 

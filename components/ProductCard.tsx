@@ -1,4 +1,4 @@
-import { useAlertSuccess } from '@/contexts/AlertSuccessContext';
+import { useAlert } from '@/contexts/AlertContext';
 import { useProductContext } from '@/contexts/ProductContext';
 import { Product } from '@/types/ProductType';
 import React from 'react';
@@ -12,7 +12,7 @@ type ProductCardProps = {
 
 export default function ProductCard({ product, onPress }: ProductCardProps) {
     const { dispatch } = useProductContext();
-    const { showAddToCartSuccess } = useAlertSuccess();
+    const { showAddToCartSuccess } = useAlert();
     const handleAddToCart = () => {
         dispatch({ type: 'ADD_TO_CART', payload: product });
         showAddToCartSuccess();

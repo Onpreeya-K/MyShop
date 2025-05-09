@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { AlertSuccessProvider } from '@/contexts/AlertSuccessContext';
+import { AlertProvider } from '@/contexts/AlertContext';
 import { ProductProvider } from '@/contexts/ProductContext';
 
 export { ErrorBoundary } from 'expo-router';
@@ -41,14 +41,14 @@ export default function RootLayout() {
 function RootLayoutNav() {
     return (
         <ProductProvider>
-            <AlertSuccessProvider>
+            <AlertProvider>
                 <ThemeProvider value={DefaultTheme}>
                     <Stack>
                         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
                     </Stack>
                 </ThemeProvider>
-            </AlertSuccessProvider>
+            </AlertProvider>
         </ProductProvider>
     );
 }

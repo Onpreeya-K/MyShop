@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-
-import { AlertSuccessProvider } from '@/contexts/AlertSuccessContext';
 import { useProductContext } from '@/contexts/ProductContext';
 import { Product } from '@/types/ProductType';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
