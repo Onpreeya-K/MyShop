@@ -6,11 +6,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
+import { AlertSuccessProvider } from '@/contexts/AlertSuccessContext';
 import { ProductProvider } from '@/contexts/ProductContext';
 
-export {
-  ErrorBoundary
-} from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
     initialRouteName: '(tabs)',
@@ -42,12 +41,14 @@ export default function RootLayout() {
 function RootLayoutNav() {
     return (
         <ProductProvider>
-            <ThemeProvider value={DefaultTheme}>
-                <Stack>
-                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                    <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-                </Stack>
-            </ThemeProvider>
+            <AlertSuccessProvider>
+                <ThemeProvider value={DefaultTheme}>
+                    <Stack>
+                        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+                    </Stack>
+                </ThemeProvider>
+            </AlertSuccessProvider>
         </ProductProvider>
     );
 }

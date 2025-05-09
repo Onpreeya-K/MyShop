@@ -32,19 +32,17 @@ export default function SmartPhoneListScreen() {
     }, []);
 
     return (
-        <AlertSuccessProvider>
-            <View style={styles.container}>
-                <FlatList
-                    data={state.productAll}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => <ProductCard product={item} onPress={() => handleCardPress(item)} />}
-                    numColumns={2}
-                    columnWrapperStyle={styles.row}
-                    contentContainerStyle={{ padding: 12 }}
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
-        </AlertSuccessProvider>
+        <View style={styles.container}>
+            <FlatList
+                data={state.productAll}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => <ProductCard product={item} onPress={() => handleCardPress(item)} />}
+                numColumns={2}
+                columnWrapperStyle={styles.row}
+                contentContainerStyle={{ padding: 12 }}
+                showsVerticalScrollIndicator={false}
+            />
+        </View>
     );
 }
 

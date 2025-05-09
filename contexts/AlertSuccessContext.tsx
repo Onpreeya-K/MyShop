@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 interface AlertSuccessContextProps {
-    show: () => void;
+    showAddToCartSuccess: () => void;
 }
 
 const AlertSuccessContext = createContext<AlertSuccessContextProps | undefined>(undefined);
@@ -9,13 +9,13 @@ const AlertSuccessContext = createContext<AlertSuccessContextProps | undefined>(
 export const AlertSuccessProvider = ({ children }: { children: ReactNode }) => {
     const [visible, setVisible] = useState(false);
 
-    const show = () => {
+    const showAddToCartSuccess = () => {
         setVisible(true);
         setTimeout(() => setVisible(false), 500);
     };
 
     return (
-        <AlertSuccessContext.Provider value={{ show }}>
+        <AlertSuccessContext.Provider value={{ showAddToCartSuccess }}>
             {children}
             {visible && (
                 <View style={styles.toastWrapper}>
@@ -35,9 +35,8 @@ export const useAlertSuccess = () => {
     return context;
 };
 
-import { StyleSheet } from 'react-native';
-import { View, Text } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
     toastWrapper: {

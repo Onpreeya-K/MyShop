@@ -12,10 +12,10 @@ type ProductCardProps = {
 
 export default function ProductCard({ product, onPress }: ProductCardProps) {
     const { dispatch } = useProductContext();
-    const { show } = useAlertSuccess();
+    const { showAddToCartSuccess } = useAlertSuccess();
     const handleAddToCart = () => {
         dispatch({ type: 'ADD_TO_CART', payload: product });
-        show();
+        showAddToCartSuccess();
     };
 
     return (
