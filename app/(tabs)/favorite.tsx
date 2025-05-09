@@ -1,20 +1,13 @@
 import { StyleSheet } from 'react-native';
-import { Text, View } from '@/components/Themed';
+
+import { View, Text } from '@/components/Themed';
 import { useTheme } from '@react-navigation/native';
 
-export default function TabHomeScreen() {
+export default function FavoriteScreen() {
     const { colors } = useTheme();
-    // const { getAllProductByCategory } = useProduct();
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const response = await getAllProductByCategory('smartphones');
-    //         console.log('response :: ', response);
-    //     };
-    //     fetchData();
-    // });
     return (
         <View style={[styles.container, { backgroundColor: colors.background }]}>
-            <Text style={styles.title}>Tab Home</Text>
+            <Text style={styles.title}>Test Favorite</Text>
         </View>
     );
 }
