@@ -1,33 +1,20 @@
-import { StyleSheet } from 'react-native';
-import { Text, View } from '@/components/Themed';
-import { useTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SmartPhone from '@/components/SmartPhone';
+import SmartPhoneDetail from '@/components/SmartPhoneDetail';
 
+const Stack = createNativeStackNavigator();
 export default function TabHomeScreen() {
-    const { colors } = useTheme();
-    // const { getAllProductByCategory } = useProduct();
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const response = await getAllProductByCategory('smartphones');
-    //         console.log('response :: ', response);
-    //     };
-    //     fetchData();
-    // });
     return (
-        <View style={[styles.container, { backgroundColor: colors.background }]}>
-            <Text style={styles.title}>Tab Home</Text>
-        </View>
+        <Stack.Navigator>
+            <Stack.Screen name="SmartPhone" component={SmartPhone} options={{ headerShown: false }} />
+            <Stack.Screen
+                name="SmartPhoneDetail"
+                component={SmartPhoneDetail}
+                options={{
+                    title: 'รายละเอียดสินค้า',
+                    headerBackTitle: '',
+                }}
+            />
+        </Stack.Navigator>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#000000',
-    },
-});
