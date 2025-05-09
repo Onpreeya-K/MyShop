@@ -2,12 +2,19 @@ import { StyleSheet } from 'react-native';
 
 import { View, Text } from '@/components/Themed';
 import { useTheme } from '@react-navigation/native';
+import { useProductContext } from '@/contexts/ProductContext';
+import { Util } from '@/utils/utils';
 
 export default function FavoriteScreen() {
     const { colors } = useTheme();
+    const { state } = useProductContext();
     return (
         <View style={[styles.container, { backgroundColor: colors.background }]}>
-            <Text style={styles.title}>Test Favorite</Text>
+            {!Util.isNullOrUndefined(state.favoriteProduct) ? (
+                state.favoriteProduct.map((item) => <Text key={item.id}>{item.name}</Text>)
+            ) : (
+                <Text style={styles.title}>รายการ favorite ว่าง</Text>
+            )}
         </View>
     );
 }

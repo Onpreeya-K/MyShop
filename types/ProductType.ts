@@ -10,4 +10,5 @@ export type Product = {
     image?: string
     price?: number
     rating?: Rating
+    idAddToCart?: string
 }
