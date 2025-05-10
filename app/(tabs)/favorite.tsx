@@ -1,33 +1,22 @@
 import { StyleSheet } from 'react-native';
+import FavoriteComponent from '@/components/FavoriteComponent';
+import SmartPhoneDetail from '@/components/SmartPhoneDetail';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { View, Text } from '@/components/Themed';
-import { useTheme } from '@react-navigation/native';
-import { useProductContext } from '@/contexts/ProductContext';
-import { Util } from '@/utils/utils';
+const Stack = createNativeStackNavigator();
 
 export default function FavoriteScreen() {
-    const { colors } = useTheme();
-    const { state } = useProductContext();
     return (
-        <View style={[styles.container, { backgroundColor: colors.background }]}>
-            {!Util.isNullOrUndefined(state.favoriteProduct) ? (
-                state.favoriteProduct.map((item) => <Text key={item.id}>{item.name}</Text>)
-            ) : (
-                <Text style={styles.title}>รายการ favorite ว่าง</Text>
-            )}
-        </View>
+        <Stack.Navigator>
+            <Stack.Screen name="Favorite" component={FavoriteComponent} options={{ headerShown: false }} />
+            <Stack.Screen
+                name="SmartPhoneDetail"
+                component={SmartPhoneDetail}
+                options={{
+                    title: 'รายละเอียดสินค้า',
+                    headerBackTitle: '',
+                }}
+            />
+        </Stack.Navigator>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#000000',
-    },
-});

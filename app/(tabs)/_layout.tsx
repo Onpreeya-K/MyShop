@@ -1,4 +1,3 @@
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
 import Colors from '@/constants/Colors';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -32,7 +31,7 @@ export default function TabLayout() {
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: Colors['light'].tint,
-                headerShown: false,
+                headerShown: true,
             }}
         >
             <Tabs.Screen
