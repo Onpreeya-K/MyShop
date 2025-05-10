@@ -3,8 +3,8 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { useProductContext } from '@/contexts/ProductContext';
 import { Product } from '@/types/ProductType';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import ProductCard from './ProductCard';
 import useProduct from '@/hooks/useProduct';
+import { ProductCard } from './card';
 
 type RootStackParamList = {
     SmartPhone: undefined;
@@ -34,7 +34,9 @@ export default function SmartPhoneListScreen() {
             <FlatList
                 data={state.productAll}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => <ProductCard product={item} onPress={() => handleCardPress(item)} />}
+                renderItem={({ item }) => (
+                    <ProductCard screen="HOME" product={item} onPress={() => handleCardPress(item)} />
+                )}
                 numColumns={2}
                 columnWrapperStyle={styles.row}
                 contentContainerStyle={{ padding: 12 }}
