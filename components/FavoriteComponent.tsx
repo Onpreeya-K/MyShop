@@ -8,13 +8,13 @@ import { ProductCard } from './card';
 
 type RootStackParamList = {
     Favorite: undefined;
-    SmartPhoneDetail: { product: Product };
+    ProductDeviceDetail: { product: Product };
 };
 export default function FavoriteComponent() {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const handleCardPress = (item: Product) => {
-        navigation.navigate('SmartPhoneDetail', { product: item });
+        navigation.navigate('ProductDeviceDetail', { product: item });
     };
     const { state } = useProductContext();
 

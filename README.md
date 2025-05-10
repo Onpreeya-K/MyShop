@@ -106,15 +106,11 @@ You can run the app directly on your mobile device using the **Expo Go** app.
             └── index.tsx
         └── +html.tsx
         └── +not-found.tsx
-        └── modal.tsx
     └── 📁assets
         └── 📁fonts
             └── SpaceMono-Regular.ttf
         └── 📁images
-            └── adaptive-icon.png
-            └── favicon.png
-            └── icon.png
-            └── splash-icon.png
+            └── shopping-cart.png
             └── star.png
     └── 📁components
         └── 📁__tests__
@@ -124,13 +120,15 @@ You can run the app directly on your mobile device using the **Expo Go** app.
             └── ProductCard.tsx
         └── CartComponent.tsx
         └── FavoriteComponent.tsx
+        └── ProductDeviceComponent.tsx
+        └── ProductDeviceDetailComponent.tsx
         └── 📁rating-star
             └── index.tsx
             └── RatingStarComponent.tsx
-        └── RightSwipeActions.tsx
-        └── SmartPhone.tsx
-        └── SmartPhoneDetail.tsx
         └── StyledText.tsx
+        └── 📁swipeaction
+            └── index.tsx
+            └── RightSwipeActions.tsx
         └── Themed.tsx
         └── useClientOnlyValue.ts
         └── useClientOnlyValue.web.ts

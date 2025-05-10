@@ -1,6 +1,5 @@
-import { StyleSheet } from 'react-native';
 import FavoriteComponent from '@/components/FavoriteComponent';
-import SmartPhoneDetail from '@/components/SmartPhoneDetail';
+import ProductDeviceDetailComponent from '@/components/ProductDeviceDetailComponent';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -10,8 +9,8 @@ export default function FavoriteScreen() {
         <Stack.Navigator>
             <Stack.Screen name="Favorite" component={FavoriteComponent} options={{ headerShown: false }} />
             <Stack.Screen
-                name="SmartPhoneDetail"
-                component={SmartPhoneDetail}
+                name="ProductDeviceDetail"
+                component={ProductDeviceDetailComponent}
                 options={{
                     title: 'รายละเอียดสินค้า',
                     headerBackTitle: '',

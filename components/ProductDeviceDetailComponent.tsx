@@ -6,15 +6,16 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RatingStarComponent } from './rating-star';
+import { Button } from 'react-native-paper';
 
 type RootStackParamList = {
-    SmartPhoneDetail: { product: Product };
+    ProductDeviceDetail: { product: Product };
 };
 
-type SmartPhoneDetailRouteProp = RouteProp<RootStackParamList, 'SmartPhoneDetail'>;
+type ProductDeviceDetailRouteProp = RouteProp<RootStackParamList, 'ProductDeviceDetail'>;
 
-export default function SmartPhoneDetail() {
-    const route = useRoute<SmartPhoneDetailRouteProp>();
+export default function ProductDeviceDetailComponent() {
+    const route = useRoute<ProductDeviceDetailRouteProp>();
     const product = route.params?.product;
     if (!product) return null;
 
@@ -56,24 +57,24 @@ export default function SmartPhoneDetail() {
                     <RatingStarComponent rating={product?.rating?.rate ?? 0} />
                     {product?.rating?.rate} ({product?.rating?.count} รีวิว)
                 </Text>
-                <TouchableOpacity onPress={handleAddToCart} style={styles.button}>
-                    <Text style={styles.buttonText}>เพิ่มสินค้า</Text>
-                </TouchableOpacity>
+                <View style={styles.button}>
+                    <Button icon="cart" mode="outlined" onPress={handleAddToCart}>
+                        เพิ่มสินค้า
+                    </Button>
+                </View>
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    card: {},
+    card: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
     button: {
-        backgroundColor: '#007AFF',
-        padding: 10,
-        borderRadius: 8,
-        alignItems: 'center',
         marginTop: 12,
     },
-    buttonText: { color: 'white', fontWeight: 'bold' },
     image: {
         width: '100%',
         aspectRatio: 1,

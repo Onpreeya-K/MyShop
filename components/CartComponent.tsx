@@ -2,9 +2,9 @@ import { useProductContext } from '@/contexts/ProductContext';
 import React from 'react';
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
-import RightSwipeActions from './RightSwipeActions';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Util } from '@/utils/utils';
+import { RightSwipeActions } from './swipeaction';
 
 const CartScreen = () => {
     const { state, dispatch } = useProductContext();

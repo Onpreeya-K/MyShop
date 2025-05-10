@@ -7,21 +7,21 @@ import useProduct from '@/hooks/useProduct';
 import { ProductCard } from './card';
 
 type RootStackParamList = {
-    SmartPhone: undefined;
-    SmartPhoneDetail: { product: Product };
+    ProductDevice: undefined;
+    ProductDeviceDetail: { product: Product };
 };
-export default function SmartPhoneListScreen() {
+export default function ProductDeviceComponent() {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const handleCardPress = (item: Product) => {
-        navigation.navigate('SmartPhoneDetail', { product: item });
+        navigation.navigate('ProductDeviceDetail', { product: item });
     };
     const { state, dispatch } = useProductContext();
     const { getAllProductByCategory } = useProduct();
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getAllProductByCategory('smartphones');
+            const response = await getAllProductByCategory('devices');
             if (response) {
                 dispatch({ type: 'SET_ALL_PRODUCTS', payload: response });
             }

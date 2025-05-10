@@ -4,7 +4,7 @@ import { Product } from '@/types/ProductType';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import { Button, Card, Text } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 
 type ProductCardProps = {
     screen: 'HOME' | 'FAVORITE';
@@ -33,33 +33,27 @@ export default function ProductCard({ screen, product, onPress }: ProductCardPro
 
     return (
         <TouchableWithoutFeedback onPress={() => onPress(product.id)}>
-            <Card style={styles.card} mode="outlined">
-                <Card.Cover source={{ uri: product.image }} style={styles.cardCover} />
-                {screen === 'FAVORITE' && (
-                    <TouchableOpacity
-                        onPress={handleAddToFavorite}
-                        style={{
-                            position: 'absolute',
-                            top: 8,
-                            right: 8,
-                            backgroundColor: 'white',
-                            borderRadius: 16,
-                            padding: 4,
-                            zIndex: 1,
-                        }}
-                    >
-                        <MaterialCommunityIcons
-                            name={isFavorite ? 'heart' : 'heart-outline'}
-                            size={24}
-                            color={isFavorite ? 'red' : 'gray'}
-                        />
-                    </TouchableOpacity>
-                )}
-                <Card.Content style={styles.cardContent}>
+            <View style={styles.card}>
+                <View>
+                    <Image source={{ uri: product.image }} style={styles.cardCover} />
+                    {screen === 'FAVORITE' && (
+                        <TouchableOpacity
+                            onPress={handleAddToFavorite}
+                            style={styles.favorite}
+                        >
+                            <MaterialCommunityIcons
+                                name={isFavorite ? 'heart' : 'heart-outline'}
+                                size={24}
+                                color={isFavorite ? 'red' : 'gray'}
+                            />
+                        </TouchableOpacity>
+                    )}
                     <Text variant="titleLarge" numberOfLines={2} ellipsizeMode="tail" style={styles.title}>
                         {product.name}
                     </Text>
-                    <View style={styles.bottomContent}>
+                </View>
+                <View style={styles.bottomContent}>
+                    <View style={styles.priceRatingContent}>
                         <Text variant="bodyMedium" style={styles.price}>
                             ฿{product?.price?.toLocaleString()}
                         </Text>
@@ -78,21 +72,22 @@ export default function ProductCard({ screen, product, onPress }: ProductCardPro
                             </Text>
                         )}
                     </View>
-                </Card.Content>
-                {screen === 'HOME' && (
-                    <Card.Actions>
-                        <Button
-                            icon="cart"
-                            onPress={(e) => {
-                                e.stopPropagation();
-                                handleAddToCart();
-                            }}
-                        >
-                            เพิ่มสินค้า
-                        </Button>
-                    </Card.Actions>
-                )}
-            </Card>
+                    {screen === 'HOME' && (
+                        <View style={styles.buttonAddCart}>
+                            <Button
+                                icon="cart"
+                                mode="outlined"
+                                onPress={(e) => {
+                                    e.stopPropagation();
+                                    handleAddToCart();
+                                }}
+                            >
+                                เพิ่มสินค้า
+                            </Button>
+                        </View>
+                    )}
+                </View>
+            </View>
         </TouchableWithoutFeedback>
     );
 }
@@ -100,35 +95,28 @@ export default function ProductCard({ screen, product, onPress }: ProductCardPro
 const styles = StyleSheet.create({
     card: {
         width: '48%',
-        height: '100%',
-        marginVertical: 0,
-        marginHorizontal: 0,
-        elevation: 2,
+        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 1px 3px',
+        backgroundColor: '#f7f3f9',
+        display: 'flex',
         flexDirection: 'column',
-        alignItems: 'stretch',
-        borderRadius: 8,
+        justifyContent: 'space-between',
     },
     cardCover: {
         width: '100%',
         height: 180,
         resizeMode: 'cover',
         backgroundColor: '#ffffff',
-        borderRadius: 0,
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
         overflow: 'hidden',
-    },
-    cardContent: {
-        flex: 1,
-        justifyContent: 'space-between',
-        marginBottom: 8,
     },
     title: {
         fontWeight: 'bold',
         fontSize: 16,
+        paddingHorizontal: 16,
+        marginTop: 8,
     },
     bottomContent: {
         marginTop: 'auto',
+        paddingHorizontal: 16,
     },
     price: {
         fontSize: 16,
@@ -138,5 +126,22 @@ const styles = StyleSheet.create({
     rating: {
         fontSize: 14,
         color: '#888',
+    },
+    favorite: {
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        backgroundColor: 'white',
+        borderRadius: 16,
+        padding: 4,
+        zIndex: 1,
+    },
+    buttonAddCart: {
+        paddingBottom: 16,
+    },
+    priceRatingContent: {
+        paddingBottom: 16,
+        flexDirection: 'column',
+        gap: 5,
     },
 });
